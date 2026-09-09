@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Proposition reçue — Ma ludothèque</title>
+    <meta name="description" content="Confirmation d'envoi d'une proposition de jeu.">
+
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Ma&nbsp;Ludothèque</a>
+        </div>
+    </nav>
+
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7 text-center py-5">
+
+                <p class="display-1 mb-3" aria-hidden="true">✓</p>
+
+                <h1 class="fw-bold mb-3">Proposition reçue</h1>
+
+                <p class="lead text-body-secondary">
+                    Merci ! Votre proposition sera lue avant la prochaine sélection.
+                    Si le jeu est retenu, vous recevrez un courriel.
+                </p>
+
+                <a class="btn btn-success btn-lg mt-3" href="proposer.html">
+                    Proposer un autre jeu
+                </a>
+
+                <!-- =========================================================
+                     LA NOTE PÉDAGOGIQUE — à lire, elle explique la triche.
+
+                     Cette page ment. Rien n'a été reçu.
+
+                     Le formulaire de proposer.html envoie ses données ici,
+                     mais merci.html est une page HTML statique : elle ne sait
+                     pas lire une requête, elle ne stocke rien, elle affiche
+                     toujours le même texte. On pourrait l'ouvrir directement
+                     dans le navigateur, sans avoir rien rempli.
+
+                     Pour recevoir vraiment, il faudrait un langage côté
+                     serveur qui lise la requête, vérifie chaque champ une
+                     seconde fois, et enregistre le résultat. C'est le sujet
+                     du cours 420-951-MA, Applications Web transactionnelles.
+
+                     Dans ce cours-ci, on s'arrête au navigateur — et c'est
+                     suffisant pour le projet final, dont l'évaluation porte
+                     sur la structure, la validation et l'accessibilité.
+                     ========================================================= -->
+                <p class="small text-body-secondary mt-5 mb-0">
+                    <strong>Note pédagogique :</strong> cette page est statique.
+                    Aucune donnée n'a été enregistrée — il faudrait un serveur
+                    pour cela. Voir le commentaire dans le code source.
+                </p>
+
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="bg-dark text-white-50 py-4 mt-5">
+        <div class="container small">
+            420-931-MA · Programmation Web (Front-End) · Séance 9
+        </div>
+    </footer>
+
+    <script src="vendor/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

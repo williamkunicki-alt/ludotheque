@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Proposer un jeu — Ma ludothèque</title>
+    <meta name="description" content="Proposez un jeu pour la prochaine sélection de la ludothèque.">
+
+    <!-- Bootstrap D'ABORD, le vôtre ENSUITE. Ne changez pas cet ordre. -->
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================================
+         GRAND DÉFI — SÉANCE 9
+         Ma Ludothèque : la page « Proposer un jeu »
+
+         La navigation, la bannière et le CSS de base sont déjà écrits.
+         VOUS N'AVEZ QU'UNE SEULE CHOSE À FAIRE : le formulaire.
+
+         ---------------------------------------------------------------------
+         CE QU'IL FAUT LIVRER
+
+         Onze champs, répartis en TROIS fieldset :
+
+           LE JEU        titre · année de sortie · genre (liste déroulante) ·
+                         plateformes (cases à cocher) · site officiel (facultatif)
+
+           VOTRE AVIS    note sur 10 · difficulté (boutons radio) · commentaire
+
+           VOUS          pseudo · courriel · consentement (case obligatoire)
+
+         ---------------------------------------------------------------------
+         LES RÈGLES
+
+         1. Chaque champ a un <label> relié par for / id. Aucune exception.
+         2. Chaque champ a un name. Sans name, la donnée n'est jamais envoyée.
+         3. Le type le PLUS PRÉCIS possible — pas text partout.
+         4. Chaque fieldset a une <legend>.
+         5. Le formulaire refuse de partir s'il est mal rempli.
+         6. Aucune ligne de JavaScript.
+
+         ---------------------------------------------------------------------
+         LES QUATRE TESTS AVANT DE DIRE « J'AI FINI »
+
+         1. Tab du début à la fin : on voit toujours où on est.
+         2. Clic sur chaque étiquette : le curseur saute dans le champ.
+         3. Soumission à vide : le navigateur bloque.
+         4. F12, on retire un required, on soumet : ça passe.
+            C'est normal. C'est tout le sujet du bloc 6.
+
+         L'antisèche est à la diapositive 41.
+         ===================================================================== -->
+
+
+    <!-- ==================== LA BARRE DE NAVIGATION (déjà faite) ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="index.html">Ma&nbsp;Ludothèque</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">La collection</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="proposer.html">Proposer un
+                            jeu</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- ==================== LA BANNIÈRE (déjà faite) ==================== -->
+    <header class="bg-body-tertiary border-bottom py-5">
+        <div class="container">
+            <p class="text-uppercase small fw-bold text-body-secondary mb-2">Sélection 2027</p>
+            <h1 class="display-5 fw-bold">Proposer un jeu</h1>
+            <p class="lead text-body-secondary mb-0" style="max-width: 44rem;">
+                Un jeu vous a marqué et il manque à la collection ? Dites-nous lequel.
+                Les propositions sont lues avant chaque nouvelle sélection.
+            </p>
+        </div>
+    </header>
+
+
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+
+                <!-- =========================================================
+                     ⬇⬇⬇  VOTRE TRAVAIL COMMENCE ICI  ⬇⬇⬇
+                     ========================================================= -->
+
+                <!-- TODO 1 — Ouvrez le <form>.
+                     Quelle method ? Posez-vous la question de la diapositive 6 :
+                     ce formulaire DEMANDE-t-il quelque chose, ou CHANGE-t-il
+                     quelque chose ?
+                     L'action pointe vers merci.html, qui existe déjà.
+                     Ajoutez class="formulaire-jeu" : le CSS s'en sert. -->
+
+                <form action="merci.html" method="TODO" class="formulaire-jeu">
+
+
+                    <!-- ============ FIELDSET 1 — LE JEU ============ -->
+                    <fieldset class="mb-5">
+                        <legend class="h4 fw-bold border-bottom pb-2 mb-4">Le jeu</legend>
+
+                        <!-- Voici le premier champ, complet, comme modèle.
+                             Les dix autres sont à vous.
+
+                             Remarquez :
+                               · le label porte for="titre", l'input porte id="titre"
+                               · l'input porte AUSSI name="titre" — c'est le name que
+                                 le serveur recevra, l'id ne sort jamais de la page
+                               · minlength et maxlength encadrent la saisie
+                               · le placeholder donne un EXEMPLE, pas le nom du champ
+                               · les classes form-label et form-control viennent de
+                                 Bootstrap (séance 8) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" for="titre">Titre du jeu</label>
+                            <input class="form-control " type="text" id="titre" name="titre" minlength="2"
+                                maxlength="80" placeholder="Outer Wilds" autocomplete="off" required>
+                        </div>
+                        <!-- TODO 2 — L'ANNÉE DE SORTIE
+                             Quel type ? Une année est-elle vraiment un nombre ?
+                             (Oui, ici : on peut la comparer et l'ordonner.)
+                             Encadrez-la : min="1970" max="2027" step="1".
+                             Ajoutez class="champ-court" sur l'input : la largeur
+                             est une information. -->
+                        <div class="mb-3">
+                            <label for="annee" class="form-label fw-bold">Annee de sortie</label>
+                            <input class="form-control champ-court" type="number" id="annee" name="annee" min="1970"
+                                max="2027" required>
+                        </div>
+                        <!-- TODO 3 — LE GENRE (liste déroulante)
+                             Cinq genres au choix : aventure, réflexion, détente,
+                             action, autre.
+                             ⚠️ Piège : pour que required fonctionne sur un <select>,
+                             il faut une PREMIÈRE option dont le value est VIDE.
+                             Sans elle, le premier genre est choisi d'office.
+                             Rappel : c'est le value qui part, pas le texte affiché. -->
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" for="genre">Genre </label>
+                            <select class="form-select" id="genre" name="genre" required>
+                                <option value="">Choisissez un genre :</option>
+                                <option value="Action">Action</option>
+                                <option value="Horreur">Reflexion</option>
+                                <option value="Aventure">Aventure</option>
+                                <option value="Detente">Detente</option>
+                                <option value="Autre">Autre</option>
+
+                            </select>
+
+                        </div>
+
+                        <!-- TODO 4 — LES PLATEFORMES (cases à cocher)
+                             Quatre cases : PC, Nintendo Switch, PlayStation, Xbox.
+                             Elles partagent le même name — elles arrivent comme une
+                             liste. Chacune a son propre value.
+                             ⚠️ Sans value, le navigateur envoie « on » et vous ne
+                             savez pas laquelle était cochée.
+                             Enveloppez le groupe dans un <fieldset> avec sa <legend>.
+                             Utilisez les classes Bootstrap form-check et
+                             form-check-input / form-check-label. -->
+
+
+                        <fieldset class="mb-3">
+                            <legend class="form-label mb-2 fw-bold">Plateformes </legend>
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="pc" name="plateforme" value="pc">
+                                <label class="form-check-label" for="pc">PC</label>
+                            </div>
+                            <div class="form-check">
+
+                                <input class="form-check-input" class="form-check-input" type="checkbox" id="ps5"
+                                    name="plateforme" value="ps5">
+                                <label class="form-check-label" for="ps5">PS5</label>
+                            </div>
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="xbox" name="plateforme"
+                                    value="xbox">
+                                <label class="form-check-label" for="xbox">Xbox</label>
+                            </div>
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" id="switch" name="plateforme"
+                                    value="pc">
+                                <label class="form-check-label" for="switch">Nintendo Switch</label>
+                            </div>
+
+
+
+                        </fieldset class="mb-3">
+
+
+                        <!-- TODO 5 — LE SITE OFFICIEL
+                             Type url. Ce champ est FACULTATIF : pas de required,
+                             et dites-le dans le label. On marque les facultatifs,
+                             pas les obligatoires. -->
+
+                        <div class="mb-3">
+                            <label for="url" class="form-label fw-bold">Site officiel(facultatif) </label>
+                            <input class="form-control " type="url" id="url" name="url"
+                                placeholder="https://www.youtube.com/" pattern="[http://www.][A-Za-z]">
+                        </div>
+
+
+                    </fieldset>
+
+
+                    <!-- ============ FIELDSET 2 — VOTRE AVIS ============ -->
+                    <fieldset class="mb-5">
+                        <legend class="h4 fw-bold border-bottom pb-2 mb-4">Votre avis</legend>
+
+
+                        <div class="mb-3">
+                            <!-- TODO 6 — LA NOTE SUR 10
+                             De 0 à 10, par demi-points. Trois attributs à trouver.
+                             Ajoutez un <div class="form-text"> sous le champ pour
+                             dire le format AVANT que l'utilisateur se trompe. -->
+                            <label for="note" class="form-label fw-bold">La note sur 10</label>
+                            <input class="form-control champ-court " type="number" id="note" name="note" min="0"
+                                max="10" step="0.5" required>
+                        </div>
+
+                        <!-- TODO 7 — LA DIFFICULTÉ (boutons radio)
+                             Trois options : accessible à tous, demande un peu
+                             d'habitude, exigeant.
+                             ⚠️ C'est le name PARTAGÉ qui les rend exclusifs. Si vous
+                             pouvez cocher les trois à la fois, c'est que vos name
+                             sont différents.
+                             Le <fieldset> et sa <legend> sont indispensables ici :
+                             sans eux, un lecteur d'écran annonce les options sans
+                             jamais dire quelle est la question. -->
+                        <div class="mb-3">
+                            <fieldset>
+                                <legend class="form-label mb-2 fw-bold">Choix de niveau</legend>
+
+                                <div class="form-check">
+                                    <label for="tous" class="form-check-label">Accessible à tous</label>
+                                    <input required class="form-check-input" type="radio" name="choix" value="tous">
+                                </div>
+
+                                <div class="form-check">
+                                    <label for="un_peu" class="form-check-label">Demande un peu d'habitude</label>
+                                    <input class="form-check-input" type="radio" name="choix" value="un_peu">
+                                </div>
+
+                                <div class="form-check">
+                                    <label for="exigeant" class="form-check-label">Exigeant</label>
+                                    <input class="form-check-input" type="radio" name="choix" value="exigeant">
+                                </div>
+                                <!--Si le name est le meme on peut juste choisir facile ou difficile-->
+                            </fieldset>
+                        </div>
+
+
+                        <!-- TODO 8 — LE COMMENTAIRE
+                             Un <textarea>, pas un <input>.
+                             ⚠️ Il a une balise fermante. <textarea /> ferait basculer
+                             tout le reste de la page à l'intérieur du champ.
+                             Entre 30 et 600 caractères, obligatoire, rows="5". -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" for="commentaire">Laissez un commentaire</label>
+                            <textarea class="form-control" id="commentaire" name="commentaire" rows="5" minlength="1"
+                                maxlength="600" required placeholder="Ce qui vous a marque..."></textarea>
+                            <p><small>30 et 600 caractères</small></p>
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- ============ FIELDSET 3 — VOUS ============ -->
+                    <fieldset class="mb-4">
+                        <legend class="h4 fw-bold border-bottom pb-2 mb-4">Vous</legend>
+
+                        <!-- TODO 9 — LE PSEUDO
+                             De 3 à 20 caractères, obligatoire.
+                             class="champ-moyen" sur l'input. -->
+                        <div class="mb-3">
+                            <label for="pseudo_id" class="fw-bold">Votre pseudo</label>
+                            <input class="champ-moyen form-control" type="text" id="pseudo_id" name="pseudo" required>
+                        </div>
+
+                        <!-- TODO 10 — LE COURRIEL
+                             Le bon type fait DEUX choses : il valide le format, et
+                             il change le clavier sur téléphone.
+                             Ajoutez autocomplete="email". -->
+                        <div class="mb-3">
+                            <label for="mon_email" class="fw-bold">Votre courriel </label>
+                            <input class="champ-moyen form-control" type="email" id="mon_email" name="s_email"
+                                placeholder="exemple@gmail.com" autocomplete="email" required>
+                        </div>
+                        <!-- TODO 11 — LE CONSENTEMENT
+                             Une seule case à cocher, OBLIGATOIRE.
+                             Texte : « J'accepte que ma proposition et mon pseudo
+                             soient publiés sur le site si le jeu est retenu. » -->
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Votre consentement</h6>
+                            <input class="form-check-input" type="checkbox" id="consent" name="consent" required>
+                            <label for="consent" class="form-check-label">« J'accepte que ma proposition et mon pseudo
+                                soient publiés sur le site si le jeu est retenu. »</label>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- TODO 12 — LE BOUTON
+                             Écrivez son type explicitement.
+                             Le libellé dit ce qui va se passer — pas « Envoyer ».
+                             ⚠️ Il doit être À L'INTÉRIEUR du <form>. Placé après
+                             </form>, il ne soumettrait rien. -->
+                    <button class="btn btn-success btn-lg" type="submit">Proposer un jeu</button>
+
+
+                </form>
+
+                <!-- =========================================================
+                     ⬆⬆⬆  VOTRE TRAVAIL S'ARRÊTE ICI  ⬆⬆⬆
+                     ========================================================= -->
+
+            </div>
+
+
+            <!-- ==================== L'ENCADRÉ LATÉRAL (déjà fait) ==================== -->
+            <aside class="col-12 col-lg-4 mt-5 mt-lg-0">
+                <div class="card bg-body-tertiary border-0">
+                    <div class="card-body">
+                        <h2 class="h6 text-uppercase text-body-secondary fw-bold">Les quatre tests</h2>
+                        <ol class="small mb-0 ps-3">
+                            <li class="mb-2">Tab du début à la fin : on voit toujours où on est.</li>
+                            <li class="mb-2">Clic sur chaque étiquette : le curseur saute dans le champ.</li>
+                            <li class="mb-2">Soumission à vide : le navigateur bloque.</li>
+                            <li>F12, on retire un <code>required</code>, on soumet : ça passe.
+                                C'est normal — et c'est tout le sujet du bloc 6.</li>
+                        </ol>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+
+    <footer class="bg-dark text-white-50 py-4 mt-5">
+        <div class="container small">
+            420-931-MA · Programmation Web (Front-End) · Séance 9 — grand défi
+        </div>
+    </footer>
+
+    <script src="vendor/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

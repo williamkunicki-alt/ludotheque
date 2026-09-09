@@ -1,0 +1,170 @@
+/* =====================================================================
+   MA LUDOTHÈQUE — PAGE « PROPOSER UN JEU »  ·  DOSSIER DE DÉPART
+   420-931-MA · Programmation Web (Front-End) · Séance 9
+
+   Ce fichier est chargé APRÈS bootstrap.min.css. C'est la cascade de la
+   séance 4 : à poids égal, la dernière règle écrite gagne. Ne changez
+   pas cet ordre dans le <head>.
+
+   Les largeurs de champ et les finitions sont déjà écrites.
+   IL VOUS RESTE UNE SECTION À COMPLÉTER : les états de validation.
+   ===================================================================== */
+
+
+/* --- 1. LES ÉTATS DE VALIDATION  ←  À COMPLÉTER ---------------------
+
+   TODO A — Un champ correctement rempli prend une bordure verte.
+   TODO B — Un champ mal rempli prend une bordure rouge.
+
+   ⚠️ LE PIÈGE DE LA DIAPOSITIVE 26
+
+   N'écrivez PAS :valid et :invalid.
+
+   :invalid est vrai dès le CHARGEMENT de la page, avant que
+   l'utilisateur ait touché quoi que ce soit. Tous vos champs
+   obligatoires seraient rouges d'entrée de jeu : vous accuseriez
+   l'utilisateur avant qu'il ait tapé une lettre.
+
+   Utilisez :user-valid et :user-invalid. Elles attendent que
+   l'utilisateur ait modifié le champ ou tenté d'envoyer le formulaire.
+
+   Essayez les deux versions et rechargez la page entre les deux :
+   la différence est immédiate.
+
+   TODO C — La bordure ne suffit pas. Un utilisateur daltonien ne
+   distingue pas votre rouge de votre gris. Ajoutez un DEUXIÈME signal
+   qui ne dépend pas de la couleur (une bordure gauche plus épaisse, un
+   fond très légèrement teinté…). C'est la règle du favori de la
+   séance 7 : jamais un seul signal.
+
+   Écrivez vos règles ici :
+   -------------------------------------------------------------------- */
+ /* on colore le champ seulement apres une interaction */
+.formulaire-jeu input:not([type="checkbox"]):not([type="radio"]):user-valid,
+.formulaire-jeu select:user-valid,
+.formulaire-jeu textarea:user-valid {
+    border-color: #23ba37;
+    border-left: 5px solid #23ba37;
+    background: #f1fbf5;
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+ .formulaire-jeu input:not([type="checkbox"]):not([type="radio"]):user-invalid,
+.formulaire-jeu select:user-invalid,
+.formulaire-jeu textarea:user-invalid {
+    border-color: #c0192a;
+    border-left: 5px solid #c0192a;
+    background: #fff5f5;
+    box-shadow: 0 0 0 0.25rem rgba(177, 39, 41, 0.25);
+}
+
+.formulaire-jeu input[type="checkbox"]:user-valid,
+.formulaire-jeu input[type="radio"]:user-valid {
+    outline: 2px solid #23ba37;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.formulaire-jeu input[type="checkbox"]:user-invalid,
+.formulaire-jeu input[type="radio"]:user-invalid {
+    outline: 2px solid #c0192a;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem rgba(177,39,41,0.25);
+}
+
+
+
+
+/* --- 2. LE FOCUS  ←  À COMPLÉTER ------------------------------------
+
+   TODO D — Renforcez l'anneau de focus. Celui de Bootstrap est bleu
+   pâle et se voit mal sur fond clair.
+
+   ⚠️ On ne supprime JAMAIS l'outline sans la remplacer. C'est la ligne
+   de CSS la plus destructrice du web : elle rend un formulaire
+   impossible à remplir au clavier. (Diapositive 20.)
+
+   Piste : outline, outline-offset, et box-shadow: none pour reprendre
+   la main sur l'ombre de Bootstrap.
+   -------------------------------------------------------------------- */
+
+.formulaire-jeu input:focus,
+.formulaire-jeu select:focus,
+.formulaire-jeu textarea:focus,
+.formulaire-jeu button:focus {
+   border-color: #28a745; 
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+    
+}
+
+
+/* =====================================================================
+   CE QUI SUIT EST DÉJÀ ÉCRIT — vous pouvez le lire, pas besoin d'y
+   toucher.
+   ===================================================================== */
+
+
+/* --- 3. LA LARGEUR DES CHAMPS ---------------------------------------
+
+   Un champ d'année aussi large qu'un champ de titre dit à l'utilisateur
+   qu'il s'est trompé de case. La largeur est une indication de format.
+   (Diapositive 32.)
+
+   Posez class="champ-court" sur l'année et la note,
+   class="champ-moyen" sur le genre et le pseudo.
+   -------------------------------------------------------------------- */
+
+.champ-court  { max-width: 9rem;  }
+.champ-moyen  { max-width: 22rem; }
+
+/* Sur petit écran, on rend la pleine largeur : à 375 px, un champ de
+   9rem laisse un vide inutile et devient difficile à viser au doigt. */
+
+@media (max-width: 575px) {
+    .champ-court,
+    .champ-moyen {
+        max-width: 100%;
+    }
+}
+
+
+/* --- 4. LES FINITIONS ----------------------------------------------- */
+
+/* Le fieldset imbriqué : on retire la bordure par défaut, qui est
+   laide, mais on GARDE la balise. L'apparence et la sémantique sont
+   deux choses séparées — c'est la séance 3. */
+
+.formulaire-jeu fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* La legend d'un fieldset imbriqué doit ressembler à un label, puisque
+   c'est le rôle qu'elle joue : elle pose la question du groupe. */
+
+.formulaire-jeu fieldset legend.form-label {
+    font-size: 1rem;
+    float: none;     /* annule le comportement par défaut de <legend> */
+    width: auto;
+}
+
+/* Le textarea ne se redimensionne qu'en hauteur : l'étirer en largeur
+   casserait la mise en page. */
+
+.formulaire-jeu textarea {
+    resize: vertical;
+}
+
+/* Les champs n'héritent pas de la police du body — Bootstrap corrige
+   déjà ce défaut, mais la règle est ici pour mémoire : sans framework,
+   c'est la première ligne à écrire. (Diapositive 29.) */
+
+.formulaire-jeu input,
+.formulaire-jeu select,
+.formulaire-jeu textarea,
+.formulaire-jeu button {
+    font: inherit;
+    
+    
+}
+
